@@ -45,11 +45,11 @@ public class M3App {
 				String marcaRuedaM = sc.nextLine().toString();
 				System.out.println("Introduce el diametro de rueda que quieres montar:");
 				float diametroM = Float.parseFloat(sc.nextLine().toString());
-				Boolean checkRueda = Rueda.checkDiametro(diametroM);
-				while (!checkRueda) {
-					System.out.println("Introduce un diamtro correcto: (  0.4 < D < 4");
-					matriculaM = sc.nextLine().toString();
-					checkMatricula = Vehiculo.checkMatricula(matriculaM);
+				Boolean checkRuedaM = Rueda.checkDiametro(diametroM);
+				while (!checkRuedaM) {
+					System.out.println("Introduce un diametro correcto: (  0.4 < D < 4)");
+					diametroM = Float.parseFloat(sc.nextLine().toString());
+					checkRuedaM = Rueda.checkDiametro(diametroM);
 				}
 				moto.setEjeDelantero(new Rueda(marcaRuedaM, diametroM));
 				moto.setEjeTrasero(new Rueda(marcaRuedaM, diametroM));
@@ -78,16 +78,21 @@ public class M3App {
 				float diametroC = Float.parseFloat(sc.nextLine().toString());
 				Boolean checkRuedaC = Rueda.checkDiametro(diametroC);
 				while (!checkRuedaC) {
-					System.out.println("Introduce un diamtro correcto: (  0.4 < D < 4");
-					matriculaC = sc.nextLine().toString();
-					checkMatricula = Vehiculo.checkMatricula(matriculaC);
+					System.out.println("Introduce un diametro correcto: (  0.4 < D < 4)");
+					diametroC = Float.parseFloat(sc.nextLine().toString());
+					checkRuedaC = Rueda.checkDiametro(diametroC);
 				}
 				coche.setEjeDelantero(new Rueda(marcaRuedaC, diametroC));
 				coche.setEjeTrasero(new Rueda(marcaRuedaC, diametroC));
 				break;
 			}
-		} 
-		System.out.println("/EXIT");
+			
+			System.out.println("Quiere añadir un coche o una moto?");
+			respuesta = sc.nextLine().toString().toLowerCase();
+			if (!(respuesta.equals("si"))) continuar = false;
+		}
+		sc.close();
+		System.out.println("Saliendo...");
 		
 
 	}
