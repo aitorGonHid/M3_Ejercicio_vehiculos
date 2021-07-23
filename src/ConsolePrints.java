@@ -171,11 +171,13 @@ public abstract class ConsolePrints {
 		System.out.println("Sacará usted mismo el vehiculo del taller?");
 		String respuesta = scan.nextLine();
 		if (respuesta.equals("si")) {
+			v.addConductores(t); //añade al titular también como conductor
 			System.out.println("Aqui tiene su vehiculo. Buen viaje !!");
 			return 0;
 		} else {
 			Conductor conductor = ConsolePrints.newConductor();
 			if (checkLicencia(conductor.getLicencia(), v)) {
+				v.addConductores(conductor); //añade el conductor a la lista de conductores del vehiculo
 				System.out.println("Aqui tiene su vehiculo. Buen viaje !!");
 				return 0;
 			} else {
