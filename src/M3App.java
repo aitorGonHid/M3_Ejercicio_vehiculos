@@ -24,67 +24,13 @@ public class M3App {
 			
 			switch (tipoVehiculo) {
 			case ("moto"):
-				//Introduce los datos de la moto
-				System.out.println("Introduce la matricula:");
-				String matriculaM = sc.nextLine().toString();
-				//Comprueba la matricula
-				Boolean checkMatricula = Vehiculo.checkMatricula(matriculaM);
-				while (!checkMatricula) {
-					System.out.println("Introduce una matricula correcta: (0000aaa / 0000aa)");
-					matriculaM = sc.nextLine().toString();
-					checkMatricula = Vehiculo.checkMatricula(matriculaM);
-				}
-				System.out.println("Introduce la marca:");
-				String marcaM = sc.nextLine().toString();
-				System.out.println("Introduce el color:");
-				String colorM = sc.nextLine().toString();
-				//Crea una nueva moto
-				Byke moto = new Byke(matriculaM,marcaM, colorM);
-				//Pide el modelo de rueda
-				System.out.println("Introduce la marca de rueda que quieres montar:");
-				String marcaRuedaM = sc.nextLine().toString();
-				System.out.println("Introduce el diametro de rueda que quieres montar:");
-				float diametroM = Float.parseFloat(sc.nextLine().toString());
-				Boolean checkRuedaM = Rueda.checkDiametro(diametroM);
-				while (!checkRuedaM) {
-					System.out.println("Introduce un diametro correcto: (  0.4 < D < 4)");
-					diametroM = Float.parseFloat(sc.nextLine().toString());
-					checkRuedaM = Rueda.checkDiametro(diametroM);
-				}
-				moto.setEjeDelantero(new Rueda(marcaRuedaM, diametroM));
-				moto.setEjeTrasero(new Rueda(marcaRuedaM, diametroM));
+				ConsolePrints.printByke();
 				break;
 			case ("coche"):
-				//Introduce los datos de la moto
-				System.out.println("Introduce la matricula:");
-				String matriculaC = sc.nextLine().toString();
-				//Comprueba la matricula
-				Boolean checkMatriculaC = Vehiculo.checkMatricula(matriculaC);
-				while (!checkMatriculaC) {
-					System.out.println("Introduce una matricula correcta: (0000aaa / 0000aa)");
-					matriculaC = sc.nextLine().toString();
-					checkMatricula = Vehiculo.checkMatricula(matriculaC);
-				}
-				System.out.println("Introduce la marca:");
-				String marcaC = sc.nextLine().toString();
-				System.out.println("Introduce el color:");
-				String colorC = sc.nextLine().toString();
-				//Crea una nueva moto
-				Car coche = new Car(matriculaC,marcaC, colorC);
-				//Pide el modelo de rueda
-				System.out.println("Introduce la marca de rueda que quieres montar:");
-				String marcaRuedaC = sc.nextLine().toString();
-				System.out.println("Introduce el diametro de rueda que quieres montar:");
-				float diametroC = Float.parseFloat(sc.nextLine().toString());
-				Boolean checkRuedaC = Rueda.checkDiametro(diametroC);
-				while (!checkRuedaC) {
-					System.out.println("Introduce un diametro correcto: (  0.4 < D < 4)");
-					diametroC = Float.parseFloat(sc.nextLine().toString());
-					checkRuedaC = Rueda.checkDiametro(diametroC);
-				}
-				coche.setEjeDelantero(new Rueda(marcaRuedaC, diametroC));
-				coche.setEjeTrasero(new Rueda(marcaRuedaC, diametroC));
+				ConsolePrints.printCar();
 				break;
+			default:
+				System.out.println("Introducidos datos erroneos !!");
 			}
 			
 			System.out.println("Quiere añadir un coche o una moto?");
