@@ -1,8 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class M3App {
 
 	public static void main(String[] args) {
+		//Listas
+		ArrayList<Persona> listaUsuarios = new ArrayList<>();
+		ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
+		
 		//Header
 		System.out.println("+---------------------+");
 		System.out.println("|   TALLER MANAGER    |");
@@ -11,15 +16,25 @@ public class M3App {
 		//Inicia programa
 		boolean continuar = false;
 		Scanner sc = new Scanner(System.in);
-		//Pide datos del usuario titular
-		Titular titular = ConsolePrints.newTitular();
 		//Pide añadir vehiculo
 		System.out.println("Desea añadir un vehiculo?");
 		String respuesta = sc.nextLine().toString().toLowerCase();
 		if (respuesta.equals("si")) continuar = true;
+		Titular titular = null;
 		
 		while (continuar) {
-			//El usuario desea continuar añadiendo vehiculo/s
+			//Pide datos del usuario titular si aun no hay uno seleccionado
+			if (titular == null) {
+				titular = ConsolePrints.newTitular();
+			} else {
+				System.out.println("Añadir nuevo titular o contiunar con el mismo? (si/no)");
+				respuesta = sc.nextLine();
+				//Cambio de titular
+				if (respuesta.equals("si")) {
+					titular = ConsolePrints.newTitular();
+				}
+			}
+			//titular = ConsolePrints.newTitular();
 			//Solicita tipo de vehiculo
 			System.out.println("Quiere añadir un coche, una moto o un camion?");
 			String tipoVehiculo = sc.nextLine().toLowerCase();
