@@ -6,7 +6,7 @@ public class Car extends Vehiculo {
 	
 	//Constructor
 	public Car(String matricula, String marca, String color) {
-		super();
+		super(matricula, marca, color);
 	}
 		
 	//Getters & setters

@@ -11,6 +11,8 @@ public class M3App {
 		//Inicia programa
 		boolean continuar = false;
 		Scanner sc = new Scanner(System.in);
+		//Pide datos del usuario titular
+		Titular titular = ConsolePrints.newTitular();
 		//Pide añadir vehiculo
 		System.out.println("Desea añadir un vehiculo?");
 		String respuesta = sc.nextLine().toString().toLowerCase();
@@ -19,23 +21,49 @@ public class M3App {
 		while (continuar) {
 			//El usuario desea continuar añadiendo vehiculo/s
 			//Solicita tipo de vehiculo
-			System.out.println("Quiere añadir un coche o una moto?");
+			System.out.println("Quiere añadir un coche, una moto o un camion?");
 			String tipoVehiculo = sc.nextLine().toLowerCase();
 			
 			switch (tipoVehiculo) {
 			case ("moto"):
-				ConsolePrints.printByke();
+				if (titular.getLicencia().getTipo() == 'A' || titular.getLicencia().getTipo() == 'B' || titular.getLicencia().getTipo() == 'C') {
+					Byke moto = ConsolePrints.printByke();
+					int exitM = ConsolePrints.sacarVehiculo(moto, titular);
+					if (exitM == -1) continuar = false;
+				} else {
+					System.out.println("Licencia no válida !!");
+					continuar = false;
+				}
 				break;
 			case ("coche"):
-				ConsolePrints.printCar();
+				if (titular.getLicencia().getTipo() == 'A' || titular.getLicencia().getTipo() == 'B') {
+					Car coche = ConsolePrints.printCar();
+					int exitC = ConsolePrints.sacarVehiculo(coche, titular);
+					if (exitC == -1) continuar = false;
+				} else {
+					System.out.println("Licencia no válida !!");
+					continuar = false;
+				}
+				break;
+			case ("camion"):
+				if (titular.getLicencia().getTipo() == 'A') {
+					Truck camion = ConsolePrints.printTruck();
+					int exitT = ConsolePrints.sacarVehiculo(camion, titular);
+					if (exitT == -1) continuar = false;
+				} else {
+					System.out.println("Licencia no válida !!");
+					continuar = false;
+				}
 				break;
 			default:
-				System.out.println("Introducidos datos erroneos !!");
+				System.out.println("Tipo de vehiculo erroneo !!");
 			}
-			
-			System.out.println("Quiere añadir un coche o una moto?");
-			respuesta = sc.nextLine().toString().toLowerCase();
-			if (!(respuesta.equals("si"))) continuar = false;
+			//Preguntará si quieres añadir otro vehiculo si el proceso ha terminado con exito
+			if (continuar) {
+				System.out.println("Quiere añadir un vechiculo?");
+				respuesta = sc.nextLine().toString().toLowerCase();
+				if (!(respuesta.equals("si"))) continuar = false;
+			}
 		}
 		sc.close();
 		System.out.println("Saliendo...");

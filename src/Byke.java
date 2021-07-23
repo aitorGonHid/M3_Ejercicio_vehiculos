@@ -6,7 +6,7 @@ public class Byke extends Vehiculo {
 	
 	//Constructor
 	public Byke(String matricula, String marca, String color) {
-		super();
+		super(matricula, marca, color);
 	}
 	
 	//Getters & setters
